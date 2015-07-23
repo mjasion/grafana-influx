@@ -1,0 +1,16 @@
+*.class
+
+target/
+.idea/
+*.iml
+.gradle/
+build/
+out/
+
+*.log
+
+restcache-go
+
+influx-data/
+influxdb_backup/
+grafana-data/

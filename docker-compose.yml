@@ -1,0 +1,18 @@
+grafana:
+  build: ./grafana
+  ports:
+    - '3000:3000'
+  links:
+    - influx
+  volumes:
+    - ./grafana-data:/usr/share/grafana/data
+influx:
+  build: ./influx
+  ports:
+    - '8086:8086'
+    - '8083:8083'
+    - '25826:25826'
+    - '2003:2003'
+  volumes:
+    - ./influx-data:/root/.influxdb
+    - ./influxdb_backup:/influxdb_backup
