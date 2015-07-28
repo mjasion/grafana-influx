@@ -1,11 +1,15 @@
 FROM ubuntu
+
 RUN apt-get update && \
     apt-get install -y wget &&\
     apt-get clean
 
-RUN wget https://s3.amazonaws.com/influxdb/influxdb_0.9.1_amd64.deb && \
-    dpkg -i influxdb_0.9.1_amd64.deb && \
-    rm influxdb_0.9.1_amd64.deb
+ENV INFLUX_VERSION 0.9.2
+
+RUN wget https://s3.amazonaws.com/influxdb/influxdb_${INFLUX_VERSION}_amd64.deb && \
+    dpkg -i influxdb_${INFLUX_VERSION}_amd64.deb && \
+    rm influxdb_${INFLUX_VERSION}_amd64.deb
+
 RUN mkdir -p /influxdb_backup/
 ADD crontab /etc/crontab
 RUN chmod 644 /etc/crontab
